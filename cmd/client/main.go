@@ -6,6 +6,7 @@ import (
 	"fmt"
 	adder "github.com/usmonzodasomon/grpc-service/pkg/proto"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"log"
 	"strconv"
 )
@@ -27,7 +28,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	conn, err := grpc.Dial(":9090", grpc.WithInsecure())
+	conn, err := grpc.Dial(":9090", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatal(err)
 	}
